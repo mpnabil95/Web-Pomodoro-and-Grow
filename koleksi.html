@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koleksi Saya - Pomodoro & Grow</title>
+    <!-- Framework Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: Nunito -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           CSS EKSTERNAL KUSTOM (TEMA PLAYFUL UI)
+           ========================================= */
+        :root {
+            --bg-color: #F0FDF4;
+            --primary-playful: #4ADE80;
+            --secondary-playful: #FBBF24;
+            --accent-playful: #60A5FA;
+            --text-dark: #1F2937;
+            --text-light: #4B5563;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar-playful {
+            background-color: white !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-bottom: 3px solid var(--primary-playful);
+            padding: 1rem 2rem;
+            border-radius: 0 0 25px 25px;
+        }
+        .navbar-brand {
+            font-weight: 900;
+            color: var(--primary-playful) !important;
+            font-size: 1.5rem;
+        }
+        .nav-link {
+            font-weight: 700;
+            color: var(--text-dark) !important;
+        }
+
+        /* Card Playful */
+        .playful-card {
+            background: white;
+            border-radius: 35px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            border: 4px solid white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 2.5rem;
+        }
+
+        /* Tombol Playful */
+        .btn-primary-play {
+            background-color: var(--primary-playful);
+            color: white;
+            border: 3px solid #22c55e;
+            box-shadow: 0 6px 0 #22c55e;
+            border-radius: 50px;
+            font-weight: 800;
+            padding: 0.8rem 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .btn-primary-play:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 2px 0 #22c55e;
+            color: white;
+        }
+        .btn-outline-play {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 3px solid #D1D5DB;
+            border-radius: 50px;
+            font-weight: 800;
+            padding: 0.8rem 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .btn-outline-play:hover {
+            border-color: #9CA3AF;
+            transform: scale(1.05);
+        }
+
+        .text-pastel-green { color: var(--primary-playful); }
+
+        /* Tabel Playful */
+        .table-playful {
+            background-color: white;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .table-playful thead th {
+            background-color: var(--primary-playful);
+            color: white;
+            border: none;
+            padding: 1rem 1.2rem;
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+        .table-playful tbody td {
+            padding: 0.9rem 1.2rem;
+            vertical-align: middle;
+            border-bottom: 2px solid var(--bg-color);
+            font-weight: 600;
+        }
+        .table-playful tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .table-playful tbody tr:hover {
+            background-color: #F0FDF4;
+        }
+
+        /* Kartu Statistik */
+        .stat-card {
+            background: white;
+            border-radius: 25px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary-playful);
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-playful);
+            line-height: 1;
+        }
+        .stat-label {
+            font-weight: 700;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        /* Badge Status */
+        .badge-berhasil {
+            background-color: #DCFCE7;
+            color: #15803D;
+            border-radius: 50px;
+            padding: 0.4rem 1rem;
+            font-weight: 800;
+            font-size: 0.85rem;
+        }
+
+        /* Empty State */
+        .empty-state {
+            padding: 3rem 1rem;
+        }
+
+        /* Toast Notifikasi */
+        #toast-container {
+            position: fixed; top: 20px; right: 20px; z-index: 9999;
+        }
+        .playful-toast {
+            background: white;
+            border-radius: 15px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-left: 6px solid var(--primary-playful);
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: none;
+            min-width: 260px;
+        }
+
+        /* Dekorasi background */
+        .bg-decor {
+            position: fixed;
+            border-radius: 50%;
+            opacity: 0.08;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .bg-decor-1 {
+            width: 320px; height: 320px;
+            background: var(--primary-playful);
+            bottom: -80px; right: -80px;
+        }
+        .bg-decor-2 {
+            width: 200px; height: 200px;
+            background: var(--accent-playful);
+            top: 80px; left: -60px;
+        }
+
+        /* Animasi fade-in baris tabel */
+        @keyframes fadeInRow {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-row {
+            animation: fadeInRow 0.4s ease forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dekorasi Background -->
+    <div class="bg-decor bg-decor-1"></div>
+    <div class="bg-decor bg-decor-2"></div>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar navbar-expand-lg navbar-light navbar-playful mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">🌱 Pomodoro & Grow</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item auth-required d-none">
+                        <a class="nav-link fw-bold" href="timer.html">Mulai Fokus</a>
+                    </li>
+                    <li class="nav-item auth-required d-none">
+                        <a class="nav-link fw-bold" href="koleksi.html">Koleksi Saya</a>
+                    </li>
+                    <li class="nav-item no-auth">
+                        <a href="login.html" class="btn btn-outline-play px-4">Masuk</a>
+                    </li>
+                    <li class="nav-item no-auth">
+                        <a href="register.html" class="btn btn-primary-play">Daftar</a>
+                    </li>
+                    <li class="nav-item auth-required d-none">
+                        <button class="btn btn-outline-danger rounded-pill fw-bold" onclick="logout()">Keluar</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Toast Notifikasi -->
+    <div id="toast-container">
+        <div id="app-toast" class="playful-toast">Pesan di sini</div>
+    </div>
+
+    <!-- ================= KONTEN UTAMA ================= -->
+    <main class="container flex-grow-1 py-4" style="position: relative; z-index: 1;">
+
+        <!-- Header Halaman -->
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Koleksi Tanamanmu 🌳</h2>
+            <p class="text-muted fw-semibold">Berikut adalah riwayat sesi fokus yang berhasil kamu selesaikan.</p>
+        </div>
+
+        <!-- Kartu Statistik Ringkasan -->
+        <div class="row g-3 mb-4" id="stats-section">
+            <div class="col-6 col-md-3">
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-total">0</div>
+                    <div class="stat-label">Total Sesi</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-minutes">0</div>
+                    <div class="stat-label">Menit Fokus</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-level">0</div>
+                    <div class="stat-label">Level Tanaman</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-today">0</div>
+                    <div class="stat-label">Sesi Hari Ini</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabel Riwayat Sesi -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="playful-card">
+
+                    <!-- Header Tabel + Tombol Aksi -->
+                    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+                        <div>
+                            <h5 class="fw-bold mb-0">📋 Riwayat Sesi Fokus</h5>
+                            <small class="text-muted fw-semibold">Data tersimpan secara lokal di browser kamu</small>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <a href="timer.html" class="btn btn-primary-play">
+                                ▶ Mulai Sesi Baru
+                            </a>
+                            <button class="btn btn-outline-play" onclick="confirmClearHistory()">
+                                🗑 Hapus Semua
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Elemen Wajib HTML: Table (Riwayat waktu, durasi, status) -->
+                    <div class="table-responsive">
+                        <table class="table table-hover table-playful text-center">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Tanggal &amp; Waktu</th>
+                                    <th scope="col">Durasi (Menit)</th>
+                                    <th scope="col">Status Tanaman</th>
+                                    <th scope="col">Level Saat Itu</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-table-body">
+                                <!-- Baris akan di-generate via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto py-4 text-center" style="position: relative; z-index: 1;">
+        <p class="fw-bold text-muted mb-0">© 2026 Pomodoro & Grow - Final Project PPW.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        /* =========================================
+           BLOK 2: PROTEKSI HALAMAN & SESI
+           Jika user belum login, redirect ke login.html
+           ========================================= */
+        function checkAuth() {
+            const activeUser = JSON.parse(localStorage.getItem('activeUser'));
+            if (!activeUser) {
+                showToast('Kamu harus login terlebih dahulu!', '#F59E0B');
+                setTimeout(() => { window.location.href = 'login.html'; }, 1500);
+                return null;
+            }
+            return activeUser;
+        }
+
+        function updateNavbar() {
+            const activeUser = JSON.parse(localStorage.getItem('activeUser'));
+            if (activeUser) {
+                document.querySelectorAll('.no-auth').forEach(el => el.classList.add('d-none'));
+                document.querySelectorAll('.auth-required').forEach(el => el.classList.remove('d-none'));
+            } else {
+                document.querySelectorAll('.no-auth').forEach(el => el.classList.remove('d-none'));
+                document.querySelectorAll('.auth-required').forEach(el => el.classList.add('d-none'));
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('activeUser');
+            showToast('Berhasil keluar.');
+            setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+        }
+
+        function showToast(message, color = 'var(--primary-playful)') {
+            const toast = document.getElementById('app-toast');
+            toast.textContent = message;
+            toast.style.borderLeftColor = color;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 3500);
+        }
+
+        /* =========================================
+           RENDER TABEL RIWAYAT SESI
+           Mengambil data dari localStorage dan
+           menampilkannya ke dalam elemen <table>
+           ========================================= */
+        function renderHistoryTable() {
+            const activeUser = JSON.parse(localStorage.getItem('activeUser'));
+            const historyBody = document.getElementById('history-table-body');
+            if (!activeUser) return;
+
+            let history = JSON.parse(localStorage.getItem(`history_${activeUser.email}`)) || [];
+
+            // Tampilkan empty state jika belum ada riwayat
+            if (history.length === 0) {
+                historyBody.innerHTML = `
+                    <tr>
+                        <td colspan="5">
+                            <div class="empty-state">
+                                <div class="fs-1 mb-3">🪴</div>
+                                <p class="fw-bold text-muted fs-5 mb-2">Belum ada tanaman yang ditanam.</p>
+                                <p class="text-muted">Selesaikan sesi fokus pertamamu untuk mulai mengisi koleksi!</p>
+                                <a href="timer.html" class="btn btn-primary-play mt-2">Mulai Sesi Pertama</a>
+                            </div>
+                        </td>
+                    </tr>`;
+                return;
+            }
+
+            // Generate baris tabel dari data riwayat (terbaru di atas)
+            historyBody.innerHTML = '';
+            const reversed = [...history].reverse();
+
+            reversed.forEach((record, index) => {
+                // Tentukan label level berdasarkan nomor urut sesi (dari data asli)
+                const sessionNumber = history.length - index;
+                const levelLabel    = getLevelLabel(sessionNumber);
+
+                const tr = document.createElement('tr');
+                tr.classList.add('fade-in-row');
+                tr.style.animationDelay = `${index * 0.05}s`;
+                tr.innerHTML = `
+                    <td class="fw-bold text-muted">${index + 1}</td>
+                    <td>${record.date}</td>
+                    <td>
+                        <span class="badge bg-light text-dark border fw-bold px-3 py-2">
+                            ⏱ ${record.duration} Menit
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge-berhasil">
+                            ${record.status} 🌱
+                        </span>
+                    </td>
+                    <td>
+                        <span class="fw-bold text-pastel-green">${levelLabel}</span>
+                    </td>
+                `;
+                historyBody.appendChild(tr);
+            });
+        }
+
+        /* --- Tentukan label level berdasarkan jumlah sesi saat itu --- */
+        function getLevelLabel(sessionCount) {
+            if (sessionCount === 0)                          return 'Level 0 🪴';
+            if (sessionCount === 1)                          return 'Level 1 🌰';
+            if (sessionCount >= 2 && sessionCount <= 3)      return 'Level 2 🌿';
+            return 'Level 3 🌳';
+        }
+
+        /* =========================================
+           UPDATE KARTU STATISTIK RINGKASAN
+           ========================================= */
+        function updateStats() {
+            const activeUser = JSON.parse(localStorage.getItem('activeUser'));
+            if (!activeUser) return;
+
+            const history = JSON.parse(localStorage.getItem(`history_${activeUser.email}`)) || [];
+            const today   = new Date().toLocaleDateString('id-ID');
+
+            // Hitung sesi hari ini
+            const todayCount = history.filter(r => r.date.startsWith(today)).length;
+
+            // Hitung level tanaman saat ini
+            const sessions = activeUser.completedSessions;
+            let level = 0;
+            if (sessions === 1)               level = 1;
+            else if (sessions >= 2 && sessions <= 3) level = 2;
+            else if (sessions >= 4)           level = 3;
+
+            document.getElementById('stat-total').textContent   = history.length;
+            document.getElementById('stat-minutes').textContent = history.length * 25;
+            document.getElementById('stat-level').textContent   = level;
+            document.getElementById('stat-today').textContent   = todayCount;
+        }
+
+        /* =========================================
+           HAPUS SEMUA RIWAYAT
+           ========================================= */
+        function confirmClearHistory() {
+            const activeUser = JSON.parse(localStorage.getItem('activeUser'));
+            if (!activeUser) return;
+
+            const history = JSON.parse(localStorage.getItem(`history_${activeUser.email}`)) || [];
+            if (history.length === 0) {
+                showToast('Tidak ada riwayat untuk dihapus.', '#F59E0B');
+                return;
+            }
+
+            // Konfirmasi sebelum menghapus
+            if (confirm('Yakin ingin menghapus semua riwayat sesi? Tindakan ini tidak bisa dibatalkan.')) {
+                localStorage.removeItem(`history_${activeUser.email}`);
+
+                // Reset completedSessions di user aktif dan database
+                activeUser.completedSessions = 0;
+                localStorage.setItem('activeUser', JSON.stringify(activeUser));
+
+                let users = JSON.parse(localStorage.getItem('pomodoroUsers')) || [];
+                const idx = users.findIndex(u => u.email === activeUser.email);
+                if (idx !== -1) {
+                    users[idx].completedSessions = 0;
+                    localStorage.setItem('pomodoroUsers', JSON.stringify(users));
+                }
+
+                showToast('Semua riwayat berhasil dihapus.');
+                renderHistoryTable();
+                updateStats();
+            }
+        }
+
+        /* =========================================
+           INISIALISASI HALAMAN
+           ========================================= */
+        window.onload = () => {
+            // BLOK 2: Cek login, redirect jika belum
+            const activeUser = checkAuth();
+            if (!activeUser) return;
+
+            updateNavbar();
+            renderHistoryTable();
+            updateStats();
+        };
+    </script>
+</body>
+</html>
