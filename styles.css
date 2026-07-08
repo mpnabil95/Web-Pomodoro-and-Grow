@@ -84,10 +84,14 @@ body {
     text-decoration: none;
 }
 
-.btn-primary-play:hover {
+.btn-primary-play:hover,
+.btn-primary-play:focus,
+.btn-primary-play:active {
     transform: translateY(-6px) scale(1.05);
     box-shadow: 0 2px 0 #22c55e;
     color: white;
+    background-color: var(--primary-playful);
+    border-color: #22c55e;
 }
 
 .btn-secondary-play {
@@ -105,10 +109,14 @@ body {
     text-decoration: none;
 }
 
-.btn-secondary-play:hover {
+.btn-secondary-play:hover,
+.btn-secondary-play:focus,
+.btn-secondary-play:active {
     transform: translateY(-6px) scale(1.05);
     box-shadow: 0 2px 0 #F59E0B;
     color: var(--text-dark);
+    background-color: var(--secondary-playful);
+    border-color: #F59E0B;
 }
 
 .btn-outline-play {
