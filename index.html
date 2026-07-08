@@ -8,147 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts: Nunito -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
-
-    <style>
-        /* =========================================
-           CSS EKSTERNAL KUSTOM (TEMA PLAYFUL UI)
-           ========================================= */
-        :root {
-            --bg-color: #F0FDF4;
-            --primary-playful: #4ADE80;
-            --secondary-playful: #FBBF24;
-            --accent-playful: #60A5FA;
-            --text-dark: #1F2937;
-            --text-light: #4B5563;
-        }
-
-        body {
-            font-family: 'Nunito', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
-
-        /* Navbar */
-        .navbar-playful {
-            background-color: white !important;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            border-bottom: 3px solid var(--primary-playful);
-            padding: 1rem 2rem;
-            border-radius: 0 0 25px 25px;
-        }
-        .navbar-brand {
-            font-weight: 900;
-            color: var(--primary-playful) !important;
-            font-size: 1.5rem;
-        }
-        .nav-link {
-            font-weight: 700;
-            color: var(--text-dark) !important;
-        }
-
-        /* Tombol Playful */
-        .btn-playful {
-            border-radius: 50px;
-            font-weight: 800;
-            padding: 0.8rem 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            border: 3px solid transparent;
-        }
-        .btn-primary-play {
-            background-color: var(--primary-playful);
-            color: white;
-            border-color: #22c55e;
-            box-shadow: 0 6px 0 #22c55e;
-            border-radius: 50px;
-            font-weight: 800;
-            padding: 0.8rem 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .btn-primary-play:hover {
-            transform: translateY(-6px) scale(1.05);
-            box-shadow: 0 2px 0 #22c55e;
-            color: white;
-        }
-        .btn-secondary-play {
-            background-color: var(--secondary-playful);
-            color: var(--text-dark);
-            border-color: #F59E0B;
-            box-shadow: 0 6px 0 #F59E0B;
-            border-radius: 50px;
-            font-weight: 800;
-            padding: 0.8rem 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .btn-secondary-play:hover {
-            transform: translateY(-6px) scale(1.05);
-            box-shadow: 0 2px 0 #F59E0B;
-            color: var(--text-dark);
-        }
-        .btn-outline-play {
-            background-color: transparent;
-            color: var(--text-light);
-            border: 3px solid #D1D5DB;
-            border-radius: 50px;
-            font-weight: 800;
-            padding: 0.8rem 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .btn-outline-play:hover {
-            border-color: #9CA3AF;
-            transform: scale(1.05);
-        }
-
-        /* Tipografi Hero */
-        .text-hero {
-            font-weight: 900;
-            color: var(--text-dark);
-            line-height: 1.2;
-        }
-        .text-pastel-green { color: var(--primary-playful); }
-
-        /* Animasi Pop */
-        @keyframes popIn {
-            0% { transform: scale(0.5); opacity: 0; }
-            80% { transform: scale(1.1); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        .animate-pop { animation: popIn 0.8s ease forwards; }
-
-        /* Area Video */
-        .video-container {
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            border: 6px solid white;
-        }
-
-        /* Toast Notifikasi */
-        #toast-container {
-            position: fixed; top: 20px; right: 20px; z-index: 9999;
-        }
-        .playful-toast {
-            background: white;
-            border-radius: 15px;
-            padding: 1rem 1.5rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border-left: 6px solid var(--primary-playful);
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: none;
-        }
-    </style>
+    <!-- CSS Kustom Bersama -->
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
 
@@ -164,21 +25,18 @@
                     <li class="nav-item">
                         <a class="nav-link fw-bold" href="index.html">Beranda</a>
                     </li>
-                    <!-- Tampil hanya jika sudah login -->
                     <li class="nav-item auth-required d-none">
                         <a class="nav-link fw-bold" href="timer.html">Mulai Fokus</a>
                     </li>
                     <li class="nav-item auth-required d-none">
                         <a class="nav-link fw-bold" href="koleksi.html">Koleksi Saya</a>
                     </li>
-                    <!-- Tampil jika belum login -->
                     <li class="nav-item no-auth">
                         <a href="login.html" class="btn btn-outline-play px-4">Masuk</a>
                     </li>
                     <li class="nav-item no-auth">
                         <a href="register.html" class="btn btn-primary-play">Daftar</a>
                     </li>
-                    <!-- Tombol Logout -->
                     <li class="nav-item auth-required d-none">
                         <button class="btn btn-outline-danger rounded-pill fw-bold" onclick="logout()">Keluar</button>
                     </li>
@@ -214,11 +72,11 @@
                 <!-- Ilustrasi Hero (Elemen Image Wajib) -->
                 <svg viewBox="0 0 200 200" class="img-fluid animate-pop" style="max-width: 400px;" role="img" aria-label="Ilustrasi tanaman dalam pot">
                     <circle cx="100" cy="100" r="90" fill="#FEF3C7" />
-                    <path d="M100 170 C50 170, 50 110, 100 110 C150 110, 150 170, 100 170 Z" fill="#D97706" /> <!-- Pot -->
-                    <rect x="95" y="60" width="10" height="50" fill="#16A34A" /> <!-- Batang -->
-                    <circle cx="80" cy="70" r="20" fill="#4ADE80" /> <!-- Daun Kiri -->
-                    <circle cx="120" cy="70" r="20" fill="#4ADE80" /> <!-- Daun Kanan -->
-                    <circle cx="100" cy="50" r="25" fill="#22C55E" /> <!-- Pucuk -->
+                    <path d="M100 170 C50 170, 50 110, 100 110 C150 110, 150 170, 100 170 Z" fill="#D97706" />
+                    <rect x="95" y="60" width="10" height="50" fill="#16A34A" />
+                    <circle cx="80" cy="70" r="20" fill="#4ADE80" />
+                    <circle cx="120" cy="70" r="20" fill="#4ADE80" />
+                    <circle cx="100" cy="50" r="25" fill="#22C55E" />
                 </svg>
             </div>
         </div>
@@ -273,10 +131,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        /* =========================================
-           BLOK 2: CEK STATUS LOGIN UNTUK NAVBAR
-           (Menyesuaikan tampilan menu sesuai sesi)
-           ========================================= */
         function updateNavbar() {
             const activeUser = JSON.parse(localStorage.getItem('activeUser'));
             if (activeUser) {
@@ -306,10 +160,7 @@
             document.getElementById('video-section').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Jalankan saat halaman dimuat
-        window.onload = () => {
-            updateNavbar();
-        };
+        window.onload = () => { updateNavbar(); };
     </script>
 </body>
 </html>
