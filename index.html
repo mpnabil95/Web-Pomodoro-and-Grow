@@ -8,147 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts: Nunito -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
-
-    <style>
-        /* =========================================
-           CSS EKSTERNAL KUSTOM (TEMA PLAYFUL UI)
-           ========================================= */
-        :root {
-            --bg-color: #F0FDF4;
-            --primary-playful: #4ADE80;
-            --secondary-playful: #FBBF24;
-            --accent-playful: #60A5FA;
-            --text-dark: #1F2937;
-            --text-light: #4B5563;
-        }
-
-        body {
-            font-family: 'Nunito', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
-
-        /* Navbar */
-        .navbar-playful {
-            background-color: white !important;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            border-bottom: 3px solid var(--primary-playful);
-            padding: 1rem 2rem;
-            border-radius: 0 0 25px 25px;
-        }
-        .navbar-brand {
-            font-weight: 900;
-            color: var(--primary-playful) !important;
-            font-size: 1.5rem;
-        }
-        .nav-link {
-            font-weight: 700;
-            color: var(--text-dark) !important;
-        }
-
-        /* Tombol Playful */
-        .btn-playful {
-            border-radius: 50px;
-            font-weight: 800;
-            padding: 0.8rem 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            border: 3px solid transparent;
-        }
-        .btn-primary-play {
-            background-color: var(--primary-playful);
-            color: white;
-            border-color: #22c55e;
-            box-shadow: 0 6px 0 #22c55e;
-            border-radius: 50px;
-            font-weight: 800;
-            padding: 0.8rem 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .btn-primary-play:hover {
-            transform: translateY(-6px) scale(1.05);
-            box-shadow: 0 2px 0 #22c55e;
-            color: white;
-        }
-        .btn-secondary-play {
-            background-color: var(--secondary-playful);
-            color: var(--text-dark);
-            border-color: #F59E0B;
-            box-shadow: 0 6px 0 #F59E0B;
-            border-radius: 50px;
-            font-weight: 800;
-            padding: 0.8rem 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .btn-secondary-play:hover {
-            transform: translateY(-6px) scale(1.05);
-            box-shadow: 0 2px 0 #F59E0B;
-            color: var(--text-dark);
-        }
-        .btn-outline-play {
-            background-color: transparent;
-            color: var(--text-light);
-            border: 3px solid #D1D5DB;
-            border-radius: 50px;
-            font-weight: 800;
-            padding: 0.8rem 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .btn-outline-play:hover {
-            border-color: #9CA3AF;
-            transform: scale(1.05);
-        }
-
-        /* Tipografi Hero */
-        .text-hero {
-            font-weight: 900;
-            color: var(--text-dark);
-            line-height: 1.2;
-        }
-        .text-pastel-green { color: var(--primary-playful); }
-
-        /* Animasi Pop */
-        @keyframes popIn {
-            0% { transform: scale(0.5); opacity: 0; }
-            80% { transform: scale(1.1); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        .animate-pop { animation: popIn 0.8s ease forwards; }
-
-        /* Area Video */
-        .video-container {
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            border: 6px solid white;
-        }
-
-        /* Toast Notifikasi */
-        #toast-container {
-            position: fixed; top: 20px; right: 20px; z-index: 9999;
-        }
-        .playful-toast {
-            background: white;
-            border-radius: 15px;
-            padding: 1rem 1.5rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border-left: 6px solid var(--primary-playful);
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: none;
-        }
-    </style>
+    <!-- CSS Kustom Bersama -->
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
 
@@ -207,11 +68,11 @@
                 </p>
                 <div class="d-flex gap-3 justify-content-center justify-content-lg-start flex-wrap">
                     <a href="register.html" class="btn btn-primary-play btn-lg">Mulai Sekarang</a>
-                    <button class="btn btn-secondary-play btn-lg" onclick="scrollToVideo()">Cara Kerja</button>
+                    <button class="btn btn-secondary-play btn-lg" onclick="scrollToVideo()">Apa itu Pomodoro?</button>
                 </div>
             </div>
             <div class="col-lg-6 text-center">
-                <!-- Ilustrasi Hero (Elemen Image Wajib) -->
+                <!-- Ilustrasi Hero -->
                 <svg viewBox="0 0 200 200" class="img-fluid animate-pop" style="max-width: 400px;" role="img" aria-label="Ilustrasi tanaman dalam pot">
                     <circle cx="100" cy="100" r="90" fill="#FEF3C7" />
                     <path d="M100 170 C50 170, 50 110, 100 110 C150 110, 150 170, 100 170 Z" fill="#D97706" /> <!-- Pot -->
@@ -248,16 +109,17 @@
             </div>
         </div>
 
-        <!-- Bagian Video (Elemen Video Wajib) -->
+        <!-- Bagian Video -->
         <div id="video-section" class="row justify-content-center pt-4 pb-5 border-top border-3">
             <div class="col-lg-8 text-center">
-                <h2 class="fw-bold mb-2">Bagaimana Cara Kerjanya?</h2>
-                <p class="text-muted fw-semibold mb-4">Tonton video singkat ini untuk memahami cara menggunakan Pomodoro & Grow.</p>
-                <div class="video-container bg-light">
-                    <video width="100%" controls poster="https://via.placeholder.com/800x450/4ADE80/FFFFFF?text=Klik+Play+Untuk+Memutar+Video">
-                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                        Browser Anda tidak mendukung tag video.
-                    </video>
+                <h2 class="fw-bold mb-2">Apa itu Pomodoro?</h2>
+                <p class="text-muted fw-semibold mb-4">Tonton video singkat ini untuk memahami cara menerapkan teknik Pomodoro.</p>
+                <div class="video-container bg-light ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/3FjIuPMQzxo?si=iLvQtgRzp_1RdMsU"
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
                 </div>
             </div>
         </div>
@@ -274,7 +136,7 @@
 
     <script>
         /* =========================================
-           BLOK 2: CEK STATUS LOGIN UNTUK NAVBAR
+            CEK STATUS LOGIN UNTUK NAVBAR
            (Menyesuaikan tampilan menu sesuai sesi)
            ========================================= */
         function updateNavbar() {

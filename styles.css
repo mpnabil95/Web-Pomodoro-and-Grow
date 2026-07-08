@@ -1,0 +1,374 @@
+/* =================================================================
+   STYLES.CSS — Pomodoro & Grow
+   CSS Bersama untuk semua halaman (index, register, login,
+   timer, koleksi). Dipisahkan dari inline <style> agar tidak
+   ada duplikasi kode antar file HTML.
+   ================================================================= */
+
+/* -----------------------------------------------------------------
+   1. VARIABEL & RESET DASAR
+   ----------------------------------------------------------------- */
+:root {
+    --bg-color: #F0FDF4;
+    --primary-playful: #4ADE80;
+    --secondary-playful: #FBBF24;
+    --accent-playful: #60A5FA;
+    --text-dark: #1F2937;
+    --text-light: #4B5563;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* -----------------------------------------------------------------
+   2. NAVBAR
+   ----------------------------------------------------------------- */
+.navbar-playful {
+    background-color: white !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border-bottom: 3px solid var(--primary-playful);
+    padding: 1rem 2rem;
+    border-radius: 0 0 25px 25px;
+}
+
+.navbar-brand {
+    font-weight: 900;
+    color: var(--primary-playful) !important;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    font-weight: 700;
+    color: var(--text-dark) !important;
+}
+
+/* -----------------------------------------------------------------
+   3. CARD PLAYFUL
+   ----------------------------------------------------------------- */
+.playful-card {
+    background: white;
+    border-radius: 35px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    border: 4px solid white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 2.5rem;
+}
+
+.playful-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(74, 222, 128, 0.15);
+}
+
+/* -----------------------------------------------------------------
+   4. TOMBOL PLAYFUL
+   ----------------------------------------------------------------- */
+.btn-primary-play {
+    background-color: var(--primary-playful);
+    color: white;
+    border: 3px solid #22c55e;
+    box-shadow: 0 6px 0 #22c55e;
+    border-radius: 50px;
+    font-weight: 800;
+    padding: 0.8rem 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn-primary-play:hover,
+.btn-primary-play:focus,
+.btn-primary-play:active {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 2px 0 #22c55e;
+    color: white;
+    background-color: var(--primary-playful);
+    border-color: #22c55e;
+}
+
+.btn-secondary-play {
+    background-color: var(--secondary-playful);
+    color: var(--text-dark);
+    border: 3px solid #F59E0B;
+    box-shadow: 0 6px 0 #F59E0B;
+    border-radius: 50px;
+    font-weight: 800;
+    padding: 0.8rem 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn-secondary-play:hover,
+.btn-secondary-play:focus,
+.btn-secondary-play:active {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 2px 0 #F59E0B;
+    color: var(--text-dark);
+    background-color: var(--secondary-playful);
+    border-color: #F59E0B;
+}
+
+.btn-outline-play {
+    background-color: transparent;
+    color: var(--text-light);
+    border: 3px solid #D1D5DB;
+    border-radius: 50px;
+    font-weight: 800;
+    padding: 0.8rem 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn-outline-play:hover {
+    border-color: #9CA3AF;
+    transform: scale(1.05);
+    color: var(--text-light);
+}
+
+/* -----------------------------------------------------------------
+   5. INPUT FORM PLAYFUL
+   ----------------------------------------------------------------- */
+.form-control-play {
+    border-radius: 20px;
+    padding: 1rem 1.5rem;
+    border: 3px solid #E5E7EB;
+    font-weight: 600;
+    background-color: #F9FAFB;
+    transition: all 0.3s ease;
+}
+
+.form-control-play:focus {
+    border-color: var(--accent-playful);
+    box-shadow: 0 0 0 0.25rem rgba(96, 165, 250, 0.25);
+    background-color: white;
+    outline: none;
+}
+
+/* -----------------------------------------------------------------
+   6. TIPOGRAFI UTILITAS
+   ----------------------------------------------------------------- */
+.text-hero {
+    font-weight: 900;
+    color: var(--text-dark);
+    line-height: 1.2;
+}
+
+.text-pastel-green {
+    color: var(--primary-playful);
+}
+
+/* -----------------------------------------------------------------
+   7. TOAST NOTIFIKASI
+   ----------------------------------------------------------------- */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.playful-toast {
+    background: white;
+    border-radius: 15px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-left: 6px solid var(--primary-playful);
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: none;
+    min-width: 260px;
+}
+
+/* -----------------------------------------------------------------
+   8. DEKORASI BACKGROUND (Lingkaran Pastel)
+   ----------------------------------------------------------------- */
+.bg-decor {
+    position: fixed;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* -----------------------------------------------------------------
+   9. ANIMASI
+   ----------------------------------------------------------------- */
+@keyframes popIn {
+    0%   { transform: scale(0.5); opacity: 0; }
+    80%  { transform: scale(1.1); }
+    100% { transform: scale(1);   opacity: 1; }
+}
+
+@keyframes bouncy {
+    0%, 100% { transform: translateY(0) scale(1); }
+    30%      { transform: translateY(-18px) scale(1.05); }
+    60%      { transform: translateY(-8px) scale(1.02); }
+}
+
+@keyframes fadeInRow {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-pop    { animation: popIn 0.8s ease forwards; }
+.animate-bouncy { animation: bouncy 0.9s ease forwards; }
+.fade-in-row    { animation: fadeInRow 0.4s ease forwards; }
+
+/* -----------------------------------------------------------------
+   10. AREA VIDEO (index.html)
+   ----------------------------------------------------------------- */
+.video-container {
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border: 6px solid white;
+}
+
+/* -----------------------------------------------------------------
+   11. TIMER DISPLAY (timer.html)
+   ----------------------------------------------------------------- */
+.timer-display {
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--text-dark);
+    background: #F3F4F6;
+    border-radius: 30px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border: 4px dashed #D1D5DB;
+    letter-spacing: 4px;
+    transition: all 0.3s ease;
+}
+
+.timer-display.running {
+    border-color: var(--primary-playful);
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+.timer-display.paused {
+    border-color: var(--secondary-playful);
+    background: #fffbeb;
+}
+
+/* Ilustrasi Tanaman */
+.plant-illustration {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Level Badge */
+.level-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-playful), #22c55e);
+    color: white;
+    border-radius: 50px;
+    padding: 0.4rem 1.2rem;
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+/* Info Sesi */
+.session-info {
+    background: #F9FAFB;
+    border-radius: 20px;
+    padding: 0.8rem 1.5rem;
+    margin-top: 1rem;
+    border: 2px solid #E5E7EB;
+}
+
+/* -----------------------------------------------------------------
+   12. TABEL PLAYFUL (koleksi.html)
+   ----------------------------------------------------------------- */
+.table-playful {
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.table-playful thead th {
+    background-color: var(--primary-playful);
+    color: white;
+    border: none;
+    padding: 1rem 1.2rem;
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+.table-playful tbody td {
+    padding: 0.9rem 1.2rem;
+    vertical-align: middle;
+    border-bottom: 2px solid var(--bg-color);
+    font-weight: 600;
+}
+
+.table-playful tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table-playful tbody tr:hover {
+    background-color: #F0FDF4;
+}
+
+/* Kartu Statistik */
+.stat-card {
+    background: white;
+    border-radius: 25px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-playful);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--primary-playful);
+    line-height: 1;
+}
+
+.stat-label {
+    font-weight: 700;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+}
+
+/* Badge Status Tabel */
+.badge-berhasil {
+    background-color: #DCFCE7;
+    color: #15803D;
+    border-radius: 50px;
+    padding: 0.4rem 1rem;
+    font-weight: 800;
+    font-size: 0.85rem;
+}
+
+/* Empty State Tabel */
+.empty-state {
+    padding: 3rem 1rem;
+}
