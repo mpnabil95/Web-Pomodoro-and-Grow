@@ -415,7 +415,7 @@
     </svg>`;
     
 }
-else if (sessions === 5) {
+else  {
     // LEVEL 5: Pohon Raksasa yang Terbelah Magis (Transisi dari Level 4)
     levelText.textContent  = 'Level 5: Energi Magis Memuncak! Energi Produktifmu termanifest!';
     levelBadge.textContent = 'Level 5 ⚡';
@@ -448,75 +448,7 @@ else if (sessions === 5) {
         </circle>
     </svg>`;
 }
-else {
-    // LEVEL 6: Naga Bangkit! (Sesi 10 ke atas)
-    levelText.textContent  = 'Level 5: Segel Terbuka! Naga Legendaris Bangkit! Energi Mu Tak Terbatas';
-    levelBadge.textContent = 'Level MAX 🐉🔥';
-    levelBadge.style.background = 'linear-gradient(135deg, #DC2626, #7F1D1D)'; // Merah menyala
-    levelBadge.style.color = '#FFFFFF';
-    
-    svgContent = `
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="45" fill="#EF4444" opacity="0.15">
-            <animate attributeName="r" values="35; 45; 35" dur="2s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.1; 0.3; 0.1" dur="2s" repeatCount="indefinite"/>
-        </circle>
 
-        <circle cx="20" cy="80" r="1.5" fill="#FBBF24">
-            <animateTransform attributeName="transform" type="translate" values="0,0; -10,-50" dur="2s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="80" cy="75" r="2" fill="#EF4444">
-            <animateTransform attributeName="transform" type="translate" values="0,0; 15,-60" dur="2.5s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="1;0" dur="2.5s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="50" cy="85" r="1" fill="#FBBF24">
-            <animateTransform attributeName="transform" type="translate" values="0,0; 5,-70" dur="1.8s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="1;0" dur="1.8s" repeatCount="indefinite"/>
-        </circle>
-
-        <g>
-            <animateTransform attributeName="transform" type="translate" values="0,0; 0,-6; 0,0" dur="3s" repeatCount="indefinite"/>
-            
-            <g>
-                <animateTransform attributeName="transform" type="rotate" values="0 65 40; 25 65 40; 0 65 40" dur="0.6s" repeatCount="indefinite"/>
-                <path d="M65 40 C 80 10, 100 15, 95 35 C 85 45, 75 45, 65 40 Z" fill="#1F2937"/>
-            </g>
-
-            <path d="M60 65 Q 85 85 95 70 Q 80 60 70 60 Z" fill="#111827"/>
-            <polygon points="90,68 98,60 95,72" fill="#DC2626"/>
-
-            <path d="M45 30 Q 75 30 65 75 Q 35 70 45 30 Z" fill="#111827"/>
-            <path d="M45 30 Q 58 50 50 72 Q 40 60 45 30 Z" fill="#374151"/> <circle cx="42" cy="30" r="10" fill="#111827"/>
-            <path d="M42 20 L 25 28 L 42 40 Z" fill="#111827"/> <polygon points="45,22 55,8 50,25" fill="#DC2626"/> <circle cx="36" cy="27" r="2" fill="#FEF08A">
-                <animate attributeName="r" values="1.5; 2.5; 1.5" dur="1s" repeatCount="indefinite"/>
-                <animate attributeName="fill" values="#FEF08A; #EF4444; #FEF08A" dur="1s" repeatCount="indefinite"/>
-            </circle>
-
-            <path d="M25 30 L -5 10 L 0 50 Z" fill="#F97316" opacity="0.9">
-                <animate attributeName="d" values="M25 30 L -5 10 L 0 50 Z; M25 30 L -10 20 L -5 60 Z; M25 30 L -5 10 L 0 50 Z" dur="0.2s" repeatCount="indefinite"/>
-                <animate attributeName="fill" values="#F97316; #EAB308; #EF4444; #F97316" dur="0.3s" repeatCount="indefinite"/>
-            </path>
-
-            <g>
-                <animateTransform attributeName="transform" type="rotate" values="0 55 45; -30 55 45; 0 55 45" dur="0.6s" repeatCount="indefinite"/>
-                <path d="M55 45 C 65 10, 90 15, 85 40 C 75 50, 60 50, 55 45 Z" fill="#374151"/>
-                <path d="M55 45 C 65 25, 80 30, 80 40 Z" fill="#DC2626" opacity="0.4"/> </g>
-        </g>
-
-        <g>
-            <path d="M10 95 L 25 80 L 35 95 Z" fill="#D97706"/>
-            <path d="M85 95 L 75 75 L 60 95 Z" fill="#D97706"/>
-            <path d="M40 95 L 45 88 L 55 95 Z" fill="#B45309"/>
-            <path d="M20 85 L 28 78 L 38 85 Z" fill="#B45309"/>
-            <path d="M55 88 L 70 70 L 75 88 Z" fill="#D97706"/>
-            <ellipse cx="50" cy="95" rx="40" ry="5" fill="#92400E"/>
-            <circle cx="25" cy="92" r="3" fill="#78350F"/>
-            <circle cx="75" cy="94" r="2.5" fill="#78350F"/>
-            <circle cx="45" cy="90" r="4" fill="#78350F"/>
-        </g>
-    </svg>`;
-}
 plantContainer.innerHTML = svgContent;
         }
 
