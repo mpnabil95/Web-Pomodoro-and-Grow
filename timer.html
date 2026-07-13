@@ -373,8 +373,11 @@
            Menggunakan setInterval() dan percabangan if/else untuk
            mengganti SVG tanaman berdasarkan progres sesi.
            ========================================================================= */
-        const SESSION_DURATION = 0.1 * 60; // 25 menit dalam detik
+        const SESSION_DURATION = 0.2 * 60; // 25 menit dalam detik
         // const SESSION_DURATION = 5; // Uncomment untuk testing cepat (5 detik)
+        let isBreak = false; // Tambahan untuk menandai mode istirahat 
+        const BREAK_DURATION = 0.1 * 60;
+
 
         let timeLeft    = SESSION_DURATION;
         let timerInterval = null;
@@ -392,8 +395,16 @@
         function startTimer() {
             if (isRunning) return;
             if (!checkAuth()) return;
+            if (timeLeft <= 0) { 
+        timeLeft = isBreak ? BREAK_DURATION : SESSION_DURATION;
+        updateTimerDisplay();
+    }
 
             isRunning = true;
+            const statusText = isBreak ? "Waktu Istirahat" : "Waktu Fokus";
+            const statusEl = document.getElementById('timer-status');
+    if (statusEl) statusEl.textContent = statusText;
+    
             document.getElementById('btn-start').classList.add('d-none');
             document.getElementById('btn-pause').classList.remove('d-none');
             document.getElementById('timer-display').classList.add('running');
@@ -436,48 +447,71 @@
         }
 
         /* --- Proses Setelah Sesi Selesai --- */
-        function processSessionComplete() {
-            let activeUser = JSON.parse(localStorage.getItem('activeUser'));
-            if (!activeUser) return;
+       function processSessionComplete() {
+    let activeUser = JSON.parse(localStorage.getItem('activeUser'));
+    if (!activeUser) return;
 
-            // Tambah jumlah sesi selesai
-            activeUser.completedSessions += 1;
+    // --- LOGIKA PERGANTIAN MODE ---
+    if (!isBreak) {
+        // JIKA SELESAI FOKUS -> Pindah ke Istirahat
+        activeUser.completedSessions += 1;
 
-            // Simpan riwayat sesi
-            let history = JSON.parse(localStorage.getItem(`history_${activeUser.email}`)) || [];
-            history.push({
-                date:     new Date().toLocaleString('id-ID'),
-                duration: 25,
-                status:   'Berhasil'
-            });
+        // Simpan riwayat sesi ke localStorage
+        let history = JSON.parse(localStorage.getItem(`history_${activeUser.email}`)) || [];
+        history.push({
+            date: new Date().toLocaleString('id-ID'),
+            duration: 25,
+            status: 'Berhasil'
+        });
 
-            // Perbarui data di localStorage
-            localStorage.setItem('activeUser', JSON.stringify(activeUser));
-            localStorage.setItem(`history_${activeUser.email}`, JSON.stringify(history));
+        // Simpan perubahan ke storage
+        localStorage.setItem('activeUser', JSON.stringify(activeUser));
+        localStorage.setItem(`history_${activeUser.email}`, JSON.stringify(history));
 
-            // Perbarui data di array users utama
-            let users = JSON.parse(localStorage.getItem('pomodoroUsers')) || [];
-            let userIndex = users.findIndex(u => u.email === activeUser.email);
-            if (userIndex !== -1) {
-                users[userIndex].completedSessions = activeUser.completedSessions;
-                localStorage.setItem('pomodoroUsers', JSON.stringify(users));
-            }
-
-            // Update UI
-            showToast('🎉 Selamat! Sesi selesai. Tanamanmu bertumbuh!');
-            updatePlantVisual();
-            updateSessionCount();
-            resetTimer();
-
-            // Animasi bouncy pada tanaman
-            const plantDiv = document.getElementById('plant-visual');
-            plantDiv.classList.remove('animate-pop');
-            plantDiv.classList.add('animate-bouncy');
-            setTimeout(() => {
-                plantDiv.classList.remove('animate-bouncy');
-                plantDiv.classList.add('animate-pop');
-            }, 1000);
+        let users = JSON.parse(localStorage.getItem('pomodoroUsers')) || [];
+        let userIndex = users.findIndex(u => u.email === activeUser.email);
+        if (userIndex !== -1) {
+            users[userIndex].completedSessions = activeUser.completedSessions;
+            localStorage.setItem('pomodoroUsers', JSON.stringify(users));
         }
+
+        // Update UI Fokus
+        updatePlantVisual();
+        updateSessionCount();
+        
+        // Pindah ke mode Istirahat
+        isBreak = true;
+        timeLeft = BREAK_DURATION;
+        showToast('🎉 Sesi selesai! Sekarang istirahat 5 menit ya ☕', '#10B981');
+        document.getElementById('timer-status').textContent = "Waktu Istirahat ☕";
+        
+    } else {
+        // JIKA SELESAI ISTIRAHAT -> Kembali ke Fokus
+        isBreak = false;
+        timeLeft = SESSION_DURATION;
+        showToast('Istirahat selesai! Ayo fokus kembali! 🚀', 'var(--primary-playful)');
+        document.getElementById('timer-status').textContent = "Waktu Fokus 🚀";
+    }
+
+    // --- RESET UI SETELAH PERGANTIAN MODE ---
+    updateTimerDisplay();
+    clearInterval(timerInterval);
+    isRunning = false;
+    document.getElementById('btn-pause').classList.add('d-none');
+    document.getElementById('btn-start').classList.remove('d-none');
+    document.getElementById('btn-start').textContent = '▶ Mulai';
+    
+    // Animasi bouncy jika tadi fokus
+    if (!isBreak) {
+        const plantDiv = document.getElementById('plant-visual');
+        plantDiv.classList.remove('animate-pop');
+        plantDiv.classList.add('animate-bouncy');
+        setTimeout(() => {
+            plantDiv.classList.remove('animate-bouncy');
+            plantDiv.classList.add('animate-pop');
+        }, 1000);
+    }
+}
 
         /* --- Logika Gamifikasi: Percabangan If/Else untuk Aset Visual Tanaman --- */
         function updatePlantVisual() {
