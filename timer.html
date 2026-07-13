@@ -8,208 +8,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts: Nunito -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <!-- CSS Kustom Bersama -->
+    <link href="styles.css" rel="stylesheet">
 
     <style>
-        /* =========================================
-           CSS EKSTERNAL KUSTOM (TEMA PLAYFUL UI)
-           ========================================= */
-        :root {
-            --bg-color: #F0FDF4;
-            --primary-playful: #4ADE80;
-            --secondary-playful: #FBBF24;
-            --accent-playful: #60A5FA;
-            --text-dark: #1F2937;
-            --text-light: #4B5563;
-        }
-
-        body {
-            font-family: 'Nunito', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
-
-        /* Navbar */
-        .navbar-playful {
-            background-color: white !important;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            border-bottom: 3px solid var(--primary-playful);
-            padding: 1rem 2rem;
-            border-radius: 0 0 25px 25px;
-        }
-        .navbar-brand {
-            font-weight: 900;
-            color: var(--primary-playful) !important;
-            font-size: 1.5rem;
-        }
-        .nav-link {
-            font-weight: 700;
-            color: var(--text-dark) !important;
-        }
-
-        /* Card Playful */
-        .playful-card {
-            background: white;
-            border-radius: 35px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-            border: 4px solid white;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            padding: 2.5rem;
-        }
-
-        /* Tombol Playful */
-        .btn-primary-play {
-            background-color: var(--primary-playful);
-            color: white;
-            border: 3px solid #22c55e;
-            box-shadow: 0 6px 0 #22c55e;
-            border-radius: 50px;
-            font-weight: 800;
-            padding: 0.8rem 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .btn-primary-play:hover {
-            transform: translateY(-6px) scale(1.05);
-            box-shadow: 0 2px 0 #22c55e;
-            color: white;
-        }
-        .btn-secondary-play {
-            background-color: var(--secondary-playful);
-            color: var(--text-dark);
-            border: 3px solid #F59E0B;
-            box-shadow: 0 6px 0 #F59E0B;
-            border-radius: 50px;
-            font-weight: 800;
-            padding: 0.8rem 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .btn-secondary-play:hover {
-            transform: translateY(-6px) scale(1.05);
-            box-shadow: 0 2px 0 #F59E0B;
-            color: var(--text-dark);
-        }
-        .btn-outline-play {
-            background-color: transparent;
-            color: var(--text-light);
-            border: 3px solid #D1D5DB;
-            border-radius: 50px;
-            font-weight: 800;
-            padding: 0.8rem 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .btn-outline-play:hover {
-            border-color: #9CA3AF;
-            transform: scale(1.05);
-        }
-
-        .text-pastel-green { color: var(--primary-playful); }
-
-        /* Timer Display */
-        .timer-display {
-            font-size: 5rem;
-            font-weight: 900;
-            color: var(--text-dark);
-            background: #F3F4F6;
-            border-radius: 30px;
-            padding: 1rem;
-            margin: 1.5rem 0;
-            border: 4px dashed #D1D5DB;
-            letter-spacing: 4px;
-            transition: all 0.3s ease;
-        }
-        .timer-display.running {
-            border-color: var(--primary-playful);
-            background: #f0fdf4;
-            color: #16a34a;
-        }
-        .timer-display.paused {
-            border-color: var(--secondary-playful);
-            background: #fffbeb;
-        }
-
-        /* Animasi Tanaman */
-        .plant-illustration {
-            width: 220px;
-            height: 220px;
-            margin: 0 auto;
-            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        @keyframes popIn {
-            0%   { transform: scale(0.5); opacity: 0; }
-            80%  { transform: scale(1.1); }
-            100% { transform: scale(1);   opacity: 1; }
-        }
-        @keyframes bouncy {
-            0%, 100% { transform: translateY(0) scale(1); }
-            30%      { transform: translateY(-18px) scale(1.05); }
-            60%      { transform: translateY(-8px) scale(1.02); }
-        }
-        .animate-pop    { animation: popIn 0.8s ease forwards; }
-        .animate-bouncy { animation: bouncy 0.9s ease forwards; }
-
-        /* Level Badge */
-        .level-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary-playful), #22c55e);
-            color: white;
-            border-radius: 50px;
-            padding: 0.4rem 1.2rem;
-            font-weight: 800;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Info Sesi */
-        .session-info {
-            background: #F9FAFB;
-            border-radius: 20px;
-            padding: 0.8rem 1.5rem;
-            margin-top: 1rem;
-            border: 2px solid #E5E7EB;
-        }
-
-        /* Toast Notifikasi */
-        #toast-container {
-            position: fixed; top: 20px; right: 20px; z-index: 9999;
-        }
-        .playful-toast {
-            background: white;
-            border-radius: 15px;
-            padding: 1rem 1.5rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border-left: 6px solid var(--primary-playful);
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: none;
-            min-width: 260px;
-        }
-
-        /* Dekorasi background */
-        .bg-decor {
-            position: fixed;
-            border-radius: 50%;
-            opacity: 0.1;
-            z-index: 0;
-            pointer-events: none;
-        }
+        /* CSS khusus halaman timer: posisi & warna dekorasi background */
         .bg-decor-1 {
             width: 350px; height: 350px;
             background: var(--primary-playful);
+            opacity: 0.1;
             top: -100px; right: -100px;
         }
         .bg-decor-2 {
             width: 250px; height: 250px;
             background: var(--secondary-playful);
+            opacity: 0.1;
             bottom: -60px; left: -60px;
         }
     </style>
@@ -263,22 +76,16 @@
             <div class="col-md-8 col-lg-6">
                 <div class="playful-card">
 
-                    <!-- Info User -->
                     <p id="user-greeting" class="fw-bold text-muted mb-1">Halo! 👋</p>
-                    <h3 class="fw-bold mb-3">Fokus</h3>
+                    <h3 class="fw-bold mb-3">Sesi Fokus</h3>
 
-                    <!-- Level Badge -->
                     <div id="level-badge" class="level-badge">Level 0</div>
 
-                    <!-- Aset Visual Tanaman (Elemen Image Wajib dari blueprint) -->
-                    <div id="plant-visual" class="plant-illustration my-2 animate-pop">
-                        <!-- Default Level 0: Pot Kosong - di-render oleh JS -->
-                    </div>
+                    <!-- Aset Visual Tanaman (Elemen Image Wajib) -->
+                    <div id="plant-visual" class="plant-illustration my-2 animate-pop"></div>
 
-                    <!-- Teks Level -->
                     <p id="level-text" class="fw-bold text-pastel-green fs-6 mb-0">Level 0: Pot Siap Ditanam!</p>
 
-                    <!-- Info Jumlah Sesi -->
                     <div class="session-info d-flex justify-content-center gap-4 mb-2">
                         <div>
                             <div class="fw-bold fs-5" id="session-count">0</div>
@@ -291,23 +98,14 @@
                         </div>
                     </div>
 
-                    <!-- Timer Hitung Mundur -->
                     <div id="timer-display" class="timer-display">25:00</div>
 
-                    <!-- Tombol Kontrol Timer -->
                     <div class="d-flex justify-content-center gap-3 mt-3 flex-wrap">
-                        <button id="btn-start" class="btn btn-primary-play fs-5" onclick="startTimer()">
-                            ▶ Mulai
-                        </button>
-                        <button id="btn-pause" class="btn btn-secondary-play fs-5 d-none" onclick="pauseTimer()">
-                            ⏸ Jeda
-                        </button>
-                        <button id="btn-reset" class="btn btn-outline-play fs-5" onclick="resetTimer()">
-                            ↺ Reset
-                        </button>
+                        <button id="btn-start" class="btn btn-primary-play fs-5" onclick="startTimer()">▶ Mulai</button>
+                        <button id="btn-pause" class="btn btn-secondary-play fs-5 d-none" onclick="pauseTimer()">⏸ Jeda</button>
+                        <button id="btn-reset" class="btn btn-outline-play fs-5" onclick="resetTimer()">↺ Reset</button>
                     </div>
 
-                    <!-- Link ke Koleksi -->
                     <div class="mt-4">
                         <a href="koleksi.html" class="text-pastel-green fw-bold text-decoration-none">
                             🌳 Lihat Koleksi Tanamanku →
@@ -330,7 +128,6 @@
     <script>
         /* =========================================================================
            BLOK 2: PROTEKSI HALAMAN & SESI
-           Jika user belum login, redirect ke login.html
            ========================================================================= */
         function checkAuth() {
             const activeUser = JSON.parse(localStorage.getItem('activeUser'));
@@ -370,8 +167,6 @@
 
         /* =========================================================================
            BLOK 3: MESIN TIMER & LOGIKA GAMIFIKASI TANAMAN
-           Menggunakan setInterval() dan percabangan if/else untuk
-           mengganti SVG tanaman berdasarkan progres sesi.
            ========================================================================= */
         const SESSION_DURATION = 0.2 * 60; // 25 menit dalam detik
         // const SESSION_DURATION = 5; // Uncomment untuk testing cepat (5 detik)
@@ -379,11 +174,10 @@
         const BREAK_DURATION = 0.1 * 60;
 
 
-        let timeLeft    = SESSION_DURATION;
+        let timeLeft      = SESSION_DURATION;
         let timerInterval = null;
-        let isRunning   = false;
+        let isRunning     = false;
 
-        /* --- Fungsi Tampilan Timer --- */
         function updateTimerDisplay() {
             const minutes = Math.floor(timeLeft / 60);
             const seconds = timeLeft % 60;
@@ -391,7 +185,6 @@
                 `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }
 
-        /* --- Mulai Timer --- */
         function startTimer() {
             if (isRunning) return;
             if (!checkAuth()) return;
@@ -413,8 +206,6 @@
             timerInterval = setInterval(() => {
                 timeLeft--;
                 updateTimerDisplay();
-
-                // Waktu habis — sesi selesai
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
                     isRunning = false;
@@ -423,7 +214,6 @@
             }, 1000);
         }
 
-        /* --- Jeda Timer --- */
         function pauseTimer() {
             clearInterval(timerInterval);
             isRunning = false;
@@ -434,11 +224,10 @@
             document.getElementById('timer-display').classList.add('paused');
         }
 
-        /* --- Reset Timer --- */
         function resetTimer() {
             clearInterval(timerInterval);
-            isRunning  = false;
-            timeLeft   = SESSION_DURATION;
+            isRunning = false;
+            timeLeft  = SESSION_DURATION;
             updateTimerDisplay();
             document.getElementById('btn-pause').classList.add('d-none');
             document.getElementById('btn-start').classList.remove('d-none');
@@ -513,7 +302,6 @@
     }
 }
 
-        /* --- Logika Gamifikasi: Percabangan If/Else untuk Aset Visual Tanaman --- */
         function updatePlantVisual() {
             const activeUser = JSON.parse(localStorage.getItem('activeUser'));
             if (!activeUser) return;
@@ -727,25 +515,17 @@ plantContainer.innerHTML = svgContent;
             plantContainer.innerHTML = svgContent;
         }
 
-        /* --- Update Info Jumlah Sesi di UI --- */
         function updateSessionCount() {
             const activeUser = JSON.parse(localStorage.getItem('activeUser'));
             if (!activeUser) return;
             document.getElementById('session-count').textContent = activeUser.completedSessions;
         }
 
-        /* --- Inisialisasi Halaman --- */
         window.onload = () => {
-            // BLOK 2: Cek login, redirect jika belum
             const activeUser = checkAuth();
             if (!activeUser) return;
-
-            // Update navbar dan sapaan user
             updateNavbar();
-            document.getElementById('user-greeting').textContent =
-                `Halo, ${activeUser.name}! 👋`;
-
-            // Tampilkan visual tanaman dan info sesi sesuai progres
+            document.getElementById('user-greeting').textContent = `Halo, ${activeUser.name}! 👋`;
             updatePlantVisual();
             updateSessionCount();
             updateTimerDisplay();

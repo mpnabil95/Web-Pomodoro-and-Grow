@@ -8,146 +8,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts: Nunito -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <!-- CSS Kustom Bersama -->
+    <link href="styles.css" rel="stylesheet">
 
     <style>
-        /* =========================================
-           CSS EKSTERNAL KUSTOM (TEMA PLAYFUL UI)
-           ========================================= */
-        :root {
-            --bg-color: #F0FDF4;
-            --primary-playful: #4ADE80;
-            --secondary-playful: #FBBF24;
-            --accent-playful: #60A5FA;
-            --text-dark: #1F2937;
-            --text-light: #4B5563;
-        }
-
-        body {
-            font-family: 'Nunito', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
-
-        /* Navbar */
-        .navbar-playful {
-            background-color: white !important;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            border-bottom: 3px solid var(--primary-playful);
-            padding: 1rem 2rem;
-            border-radius: 0 0 25px 25px;
-        }
-        .navbar-brand {
-            font-weight: 900;
-            color: var(--primary-playful) !important;
-            font-size: 1.5rem;
-        }
-        .nav-link {
-            font-weight: 700;
-            color: var(--text-dark) !important;
-        }
-
-        /* Card Playful */
-        .playful-card {
-            background: white;
-            border-radius: 35px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-            border: 4px solid white;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            padding: 2.5rem;
-        }
-        .playful-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(74, 222, 128, 0.15);
-        }
-
-        /* Tombol Playful */
-        .btn-primary-play {
-            background-color: var(--primary-playful);
-            color: white;
-            border-color: #22c55e;
-            box-shadow: 0 6px 0 #22c55e;
-            border-radius: 50px;
-            font-weight: 800;
-            padding: 0.8rem 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 3px solid #22c55e;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .btn-primary-play:hover {
-            transform: translateY(-6px) scale(1.05);
-            box-shadow: 0 2px 0 #22c55e;
-            color: white;
-        }
-        .btn-outline-play {
-            background-color: transparent;
-            color: var(--text-light);
-            border: 3px solid #D1D5DB;
-            border-radius: 50px;
-            font-weight: 800;
-            padding: 0.8rem 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .btn-outline-play:hover {
-            border-color: #9CA3AF;
-            transform: scale(1.05);
-        }
-
-        /* Input Form Playful */
-        .form-control-play {
-            border-radius: 20px;
-            padding: 1rem 1.5rem;
-            border: 3px solid #E5E7EB;
-            font-weight: 600;
-            background-color: #F9FAFB;
-            transition: all 0.3s ease;
-        }
-        .form-control-play:focus {
-            border-color: var(--accent-playful);
-            box-shadow: 0 0 0 0.25rem rgba(96, 165, 250, 0.25);
-            background-color: white;
-            outline: none;
-        }
-
-        .text-pastel-green { color: var(--primary-playful); }
-
-        /* Toast Notifikasi */
-        #toast-container {
-            position: fixed; top: 20px; right: 20px; z-index: 9999;
-        }
-        .playful-toast {
-            background: white;
-            border-radius: 15px;
-            padding: 1rem 1.5rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border-left: 6px solid var(--primary-playful);
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: none;
-        }
-
-        /* Dekorasi background */
-        .bg-decor {
-            position: fixed;
-            border-radius: 50%;
-            opacity: 0.15;
-            z-index: 0;
-            pointer-events: none;
-        }
+        /* CSS khusus halaman register: posisi & warna dekorasi background */
         .bg-decor-1 {
             width: 300px; height: 300px;
             background: var(--primary-playful);
+            opacity: 0.15;
             top: -80px; left: -80px;
         }
         .bg-decor-2 {
             width: 200px; height: 200px;
             background: var(--secondary-playful);
+            opacity: 0.15;
             bottom: 50px; right: -60px;
         }
     </style>
@@ -170,21 +45,18 @@
                     <li class="nav-item">
                         <a class="nav-link fw-bold" href="index.html">Beranda</a>
                     </li>
-                    <!-- Tampil hanya jika sudah login -->
                     <li class="nav-item auth-required d-none">
                         <a class="nav-link fw-bold" href="timer.html">Mulai Fokus</a>
                     </li>
                     <li class="nav-item auth-required d-none">
                         <a class="nav-link fw-bold" href="koleksi.html">Koleksi Saya</a>
                     </li>
-                    <!-- Tampil jika belum login -->
                     <li class="nav-item no-auth">
                         <a href="login.html" class="btn btn-outline-play px-4">Masuk</a>
                     </li>
                     <li class="nav-item no-auth">
                         <a href="register.html" class="btn btn-primary-play">Daftar</a>
                     </li>
-                    <!-- Tombol Logout -->
                     <li class="nav-item auth-required d-none">
                         <button class="btn btn-outline-danger rounded-pill fw-bold" onclick="logout()">Keluar</button>
                     </li>
@@ -203,8 +75,6 @@
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-5">
                 <div class="playful-card">
-
-                    <!-- Judul Form -->
                     <div class="text-center mb-4">
                         <div class="fs-1 mb-2">🌱</div>
                         <h2 class="fw-bold">Buat Akun Baru</h2>
@@ -215,41 +85,17 @@
                     <form id="registerForm" onsubmit="handleRegister(event)" novalidate>
                         <div class="mb-3">
                             <label for="regName" class="form-label fw-bold">Nama Panggilan</label>
-                            <input
-                                type="text"
-                                class="form-control form-control-play"
-                                id="regName"
-                                required
-                                placeholder="Cth: Petani Kode"
-                                autocomplete="name"
-                            >
+                            <input type="text" class="form-control form-control-play" id="regName" required placeholder="Cth: Petani Kode" autocomplete="name">
                         </div>
                         <div class="mb-3">
                             <label for="regEmail" class="form-label fw-bold">Alamat Email</label>
-                            <input
-                                type="email"
-                                class="form-control form-control-play"
-                                id="regEmail"
-                                required
-                                placeholder="nama@email.com"
-                                autocomplete="email"
-                            >
+                            <input type="email" class="form-control form-control-play" id="regEmail" required placeholder="nama@email.com" autocomplete="email">
                         </div>
                         <div class="mb-4">
                             <label for="regPassword" class="form-label fw-bold">Kata Sandi</label>
-                            <input
-                                type="password"
-                                class="form-control form-control-play"
-                                id="regPassword"
-                                required
-                                placeholder="Min. 6 Karakter"
-                                minlength="6"
-                                autocomplete="new-password"
-                            >
+                            <input type="password" class="form-control form-control-play" id="regPassword" required placeholder="Min. 6 Karakter" minlength="6" autocomplete="new-password">
                         </div>
-                        <button type="submit" class="btn btn-primary-play w-100 fs-5">
-                            Daftar Sekarang 🚀
-                        </button>
+                        <button type="submit" class="btn btn-primary-play w-100 fs-5">Daftar Sekarang 🚀</button>
                     </form>
 
                     <hr class="my-4">
@@ -274,46 +120,31 @@
     <script>
         /* =========================================
            BLOK 1: SISTEM REGISTRASI
-           (Menyimpan data pengguna ke localStorage)
            ========================================= */
         function handleRegister(e) {
             e.preventDefault();
-
             const name     = document.getElementById('regName').value.trim();
             const email    = document.getElementById('regEmail').value.trim();
             const password = document.getElementById('regPassword').value;
 
-            // Validasi panjang kata sandi
             if (password.length < 6) {
                 showToast('Kata sandi minimal 6 karakter!', '#EF4444');
                 return;
             }
 
-            // Ambil data user yang sudah tersimpan atau buat array baru
             let users = JSON.parse(localStorage.getItem('pomodoroUsers')) || [];
 
-            // Cek apakah email sudah terdaftar
             if (users.find(u => u.email === email)) {
                 showToast('Email sudah terdaftar! Coba email lain.', '#EF4444');
                 return;
             }
 
-            // Simpan user baru ke localStorage
-            users.push({
-                name,
-                email,
-                password,
-                completedSessions: 0
-            });
+            users.push({ name, email, password, completedSessions: 0 });
             localStorage.setItem('pomodoroUsers', JSON.stringify(users));
 
             showToast('Pendaftaran berhasil! Silakan masuk. ✅');
             document.getElementById('registerForm').reset();
-
-            // Redirect ke halaman login setelah 1.5 detik
-            setTimeout(() => {
-                window.location.href = 'login.html';
-            }, 1500);
+            setTimeout(() => { window.location.href = 'login.html'; }, 1500);
         }
 
         /* =========================================
@@ -345,15 +176,10 @@
             setTimeout(() => { toast.style.display = 'none'; }, 3000);
         }
 
-        // Jalankan saat halaman dimuat
         window.onload = () => {
             updateNavbar();
-
-            // Jika sudah login, langsung arahkan ke timer
             const activeUser = JSON.parse(localStorage.getItem('activeUser'));
-            if (activeUser) {
-                window.location.href = 'timer.html';
-            }
+            if (activeUser) { window.location.href = 'timer.html'; }
         };
     </script>
 </body>
