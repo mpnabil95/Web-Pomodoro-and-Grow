@@ -169,10 +169,16 @@
         /* =========================================================================
            BLOK 3: MESIN TIMER & LOGIKA GAMIFIKASI TANAMAN
            ========================================================================= */
-        const SESSION_DURATION = 0.2 * 60; // 25 menit dalam detik
-        // const SESSION_DURATION = 5; // Uncomment untuk testing cepat (5 detik)
+        //const SESSION_DURATION = 0.2 * 60; // 25 menit dalam detik
+         const SESSION_DURATION = 5; // Uncomment untuk testing cepat (5 detik)
+
+
         let isBreak = false; // Tambahan untuk menandai mode istirahat 
-        const BREAK_DURATION = 0.1 * 60;
+
+
+        //const BREAK_DURATION = 0.1 * 60;
+        const BREAK_DURATION = 2;  // untuk testing
+    
 
 
         let timeLeft      = SESSION_DURATION;
@@ -325,7 +331,7 @@
     levelBadge.textContent = 'Level 0';
     levelBadge.style.background = 'linear-gradient(135deg, #9CA3AF, #6B7280)';
     svgContent = `
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="-10 -10 120 120" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 55 L80 55 L70 92 L30 92 Z" fill="#D97706"/>
         <rect x="15" y="48" width="70" height="10" rx="5" fill="#B45309"/>
         <ellipse cx="50" cy="53" rx="30" ry="8" fill="#92400E"/>
@@ -338,7 +344,7 @@
     levelBadge.textContent = 'Level 1';
     levelBadge.style.background = 'linear-gradient(135deg, #FDE047, #F59E0B)';
     svgContent = `
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="-10 -10 120 120" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 55 L80 55 L70 92 L30 92 Z" fill="#D97706"/>
         <rect x="15" y="48" width="70" height="10" rx="5" fill="#B45309"/>
         <ellipse cx="50" cy="53" rx="30" ry="8" fill="#92400E"/>
@@ -353,7 +359,7 @@
     levelBadge.textContent = 'Level 2';
     levelBadge.style.background = 'linear-gradient(135deg, #86EFAC, #4ADE80)';
     svgContent = `
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="-10 -10 120 120" xmlns="http://www.w3.org/2000/svg">
         <rect x="47" y="28" width="6" height="24" rx="3" fill="#16A34A"/>
         <ellipse cx="38" cy="32" rx="10" ry="7" fill="#4ADE80" transform="rotate(-20 38 32)"/>
         <ellipse cx="62" cy="32" rx="10" ry="7" fill="#4ADE80" transform="rotate(20 62 32)"/>
@@ -370,7 +376,7 @@
     levelBadge.textContent = 'Level 3 ✨';
     levelBadge.style.background = 'linear-gradient(135deg, #34D399, #059669)';
     svgContent = `
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="-10 -10 120 120" xmlns="http://www.w3.org/2000/svg">
         <rect x="45" y="22" width="10" height="34" rx="4" fill="#15803D"/>
         <circle cx="32" cy="28" r="16" fill="#4ADE80"/>
         <circle cx="68" cy="28" r="16" fill="#4ADE80"/>
@@ -394,7 +400,7 @@
     // Menggunakan gradasi emas dan hijau tua untuk kesan epik/legendaris
     levelBadge.style.background = 'linear-gradient(135deg, #10B981, #064E3B)';
     svgContent = `
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="-10 -10 120 120" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 55 L80 55 L70 92 L30 92 Z" fill="#D97706"/>
         <rect x="15" y="48" width="70" height="10" rx="5" fill="#B45309"/>
         <ellipse cx="50" cy="53" rx="30" ry="8" fill="#92400E"/>
@@ -409,7 +415,7 @@
         <circle cx="82" cy="15" r="2" fill="#FEF08A"/>
         <circle cx="75" cy="5" r="1.5" fill="#FEF08A"/>
         <circle cx="25" cy="5" r="1.5" fill="#FEF08A"/>
-        <circle cx="50" cy="-2" r="2" fill="#FEF08A"/> 
+        <circle cx="50" cy="2" r="2" fill="#FEF08A"/>
 
         <path d="M25 60 L28 85" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
     </svg>`;
@@ -422,7 +428,7 @@ else  {
     levelBadge.style.background = 'linear-gradient(135deg, #4F46E5, #1E3A8A)';
     
     svgContent = `
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="-10 -15 120 125" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 55 L80 55 L70 92 L30 92 Z" fill="#D97706"/>
         <rect x="15" y="48" width="70" height="10" rx="5" fill="#B45309"/>
         <ellipse cx="50" cy="53" rx="30" ry="8" fill="#92400E"/>
