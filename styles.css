@@ -269,6 +269,7 @@ body {
     width: 220px;
     height: 220px;
     margin: 0 auto;
+    overflow: visible;
     transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
