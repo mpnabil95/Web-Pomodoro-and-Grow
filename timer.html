@@ -422,35 +422,92 @@
     
 }
 else  {
-    // LEVEL 5: Pohon Raksasa yang Terbelah Magis (Transisi dari Level 4)
-    levelText.textContent  = 'Level 5: Energi Magis Memuncak! Energi Produktifmu termanifest!';
-    levelBadge.textContent = 'Level 5 ⚡';
-    levelBadge.style.background = 'linear-gradient(135deg, #4F46E5, #1E3A8A)';
-    
+    // LEVEL 5: Pohon Raksasa Tanpa Pot — Target Tercapai!
+    levelText.textContent  = 'Level 5: Target Tercapai! Pohonmu kini berdiri megah di alam bebas!';
+    levelBadge.textContent = 'Level 5 🌳';
+    levelBadge.style.background = 'linear-gradient(135deg, #22C55E, #14532D)';
+
     svgContent = `
-    <svg viewBox="-10 -15 120 125" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 55 L80 55 L70 92 L30 92 Z" fill="#D97706"/>
-        <rect x="15" y="48" width="70" height="10" rx="5" fill="#B45309"/>
-        <ellipse cx="50" cy="53" rx="30" ry="8" fill="#92400E"/>
-        
-        <path d="M42 50 L42 15 L58 15 L58 50 Z" fill="#14532D"/> 
-        <path d="M48 15 L52 15 L50 50 Z" fill="#166534" opacity="0.5"/> <path d="M48 20 L51 35 L47 45" stroke="#FBBF24" stroke-width="2" fill="none">
-            <animate attributeName="opacity" values="0.3; 1; 0.3" dur="0.8s" repeatCount="indefinite"/>
-        </path>
+    <svg viewBox="-10 -5 120 115" xmlns="http://www.w3.org/2000/svg">
 
-        <circle cx="50" cy="20" r="28" fill="#065F46"/>
-        <circle cx="30" cy="25" r="22" fill="#10B981" opacity="0.9"/>
-        <circle cx="70" cy="25" r="22" fill="#10B981" opacity="0.9"/>
-        
-        <path d="M30 10 L40 25 L35 25 L45 40" stroke="#60A5FA" stroke-width="2" fill="none" opacity="0">
-            <animate attributeName="opacity" values="0; 1; 0" dur="0.3s" repeatCount="indefinite" begin="0.5s"/>
-        </path>
-        <path d="M70 10 L60 25 L65 25 L55 40" stroke="#60A5FA" stroke-width="2" fill="none" opacity="0">
-            <animate attributeName="opacity" values="0; 1; 0" dur="0.4s" repeatCount="indefinite" begin="0.2s"/>
-        </path>
+        <!-- Tanah berlapis dengan tekstur -->
+        <!-- Lapisan tanah paling bawah (gelap) -->
+        <ellipse cx="50" cy="103" rx="42" ry="7" fill="#78350F"/>
+        <!-- Lapisan tanah tengah -->
+        <ellipse cx="50" cy="100" rx="40" ry="6" fill="#92400E"/>
+        <!-- Lapisan tanah atas (lebih terang, permukaan) -->
+        <ellipse cx="50" cy="97" rx="38" ry="5.5" fill="#B45309"/>
+        <!-- Highlight permukaan tanah -->
+        <ellipse cx="42" cy="95.5" rx="10" ry="2" fill="#D97706" opacity="0.5"/>
+        <ellipse cx="62" cy="96"   rx="8"  ry="1.5" fill="#D97706" opacity="0.4"/>
+        <!-- Batu / kerikil kecil di permukaan -->
+        <ellipse cx="28" cy="96" rx="3.5" ry="2" fill="#A16207" opacity="0.7"/>
+        <ellipse cx="72" cy="95" rx="3"   ry="1.8" fill="#92400E" opacity="0.6"/>
+        <ellipse cx="55" cy="94" rx="2"   ry="1.2" fill="#78350F" opacity="0.5"/>
 
-        <circle cx="50" cy="25" r="35" fill="none" stroke="#818CF8" stroke-width="1" stroke-dasharray="4,4" opacity="0.4">
-            <animateTransform attributeName="transform" type="rotate" from="0 50 25" to="360 50 25" dur="8s" repeatCount="indefinite"/>
+        <!-- Batang utama — tebal, tumbuh langsung dari tanah -->
+        <!-- Bentuk batang sedikit melebar ke bawah (pangkal lebih lebar) -->
+        <path d="M43 96 Q42 80 41 65 Q41 55 50 52 Q59 55 59 65 Q58 80 57 96 Z" fill="#15803D"/>
+        <!-- Sisi kiri batang (shadow) -->
+        <path d="M43 96 Q42 80 41 65 Q41 55 46 52 Q44 60 44 75 Q44 88 45 96 Z" fill="#14532D" opacity="0.6"/>
+        <!-- Sisi kanan batang (highlight) -->
+        <path d="M57 96 Q58 80 59 65 Q59 55 54 52 Q56 60 56 75 Q56 88 55 96 Z" fill="#4ADE80" opacity="0.2"/>
+        <!-- Tekstur kulit kayu — garis horizontal melengkung -->
+        <path d="M44 62 Q50 64 56 62" stroke="#166534" stroke-width="1.5" fill="none" opacity="0.6"/>
+        <path d="M43 70 Q50 72 57 70" stroke="#166534" stroke-width="1.5" fill="none" opacity="0.6"/>
+        <path d="M43 78 Q50 80 57 78" stroke="#166534" stroke-width="1.5" fill="none" opacity="0.5"/>
+        <path d="M43 86 Q50 88 57 86" stroke="#166534" stroke-width="1.5" fill="none" opacity="0.4"/>
+        <!-- Luka / celah kayu kecil -->
+        <path d="M48 66 Q50 68 48 70" stroke="#14532D" stroke-width="1" fill="none" opacity="0.5"/>
+        <path d="M53 74 Q51 76 53 79" stroke="#14532D" stroke-width="1" fill="none" opacity="0.4"/>
+
+        <!-- Cabang kiri & kanan -->
+        <path d="M48 70 Q30 60 22 50" stroke="#15803D" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <path d="M52 65 Q70 55 78 44" stroke="#15803D" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <path d="M46 80 Q28 75 20 70" stroke="#15803D" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <path d="M54 80 Q72 75 80 70" stroke="#15803D" stroke-width="4" stroke-linecap="round" fill="none"/>
+
+        <!-- Mahkota daun — berlapis, lebih lebar dari level 4 -->
+        <!-- Lapisan bawah (paling lebar) -->
+        <circle cx="22" cy="54" r="18" fill="#4ADE80"/>
+        <circle cx="78" cy="54" r="18" fill="#4ADE80"/>
+        <circle cx="50" cy="58" r="22" fill="#22C55E"/>
+        <!-- Lapisan tengah -->
+        <circle cx="28" cy="38" r="20" fill="#16A34A"/>
+        <circle cx="72" cy="38" r="20" fill="#16A34A"/>
+        <circle cx="50" cy="35" r="26" fill="#15803D"/>
+        <!-- Lapisan atas / pucuk -->
+        <circle cx="38" cy="22" r="17" fill="#4ADE80"/>
+        <circle cx="62" cy="22" r="17" fill="#4ADE80"/>
+        <circle cx="50" cy="10" r="22" fill="#22C55E"/>
+        <!-- Highlight terang di pucuk -->
+        <circle cx="44" cy="6"  r="10" fill="#86EFAC" opacity="0.7"/>
+        <circle cx="56" cy="8"  r="8"  fill="#86EFAC" opacity="0.5"/>
+
+        <!-- Bunga / buah kecil sebagai penanda "matang" -->
+        <circle cx="30" cy="42" r="4.5" fill="#F43F5E"/>
+        <circle cx="70" cy="42" r="4.5" fill="#F43F5E"/>
+        <circle cx="24" cy="56" r="4"   fill="#FBBF24"/>
+        <circle cx="76" cy="56" r="4"   fill="#FBBF24"/>
+        <circle cx="42" cy="28" r="4"   fill="#FB923C"/>
+        <circle cx="58" cy="28" r="4"   fill="#FB923C"/>
+        <circle cx="50" cy="20" r="5"   fill="#FBBF24"/>
+
+        <!-- Bintang kecil bertebaran — merayakan pencapaian, berkedip pelan -->
+        <circle cx="12" cy="20" r="2.5" fill="#FEF08A">
+            <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="0s"/>
+        </circle>
+        <circle cx="88" cy="16" r="2"   fill="#FEF08A">
+            <animate attributeName="opacity" values="0.3;1;0.3" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+        </circle>
+        <circle cx="8"  cy="48" r="1.5" fill="#FEF08A">
+            <animate attributeName="opacity" values="0.3;1;0.3" dur="1.8s" repeatCount="indefinite" begin="0.3s"/>
+        </circle>
+        <circle cx="92" cy="50" r="2"   fill="#FEF08A">
+            <animate attributeName="opacity" values="0.3;1;0.3" dur="2.2s" repeatCount="indefinite" begin="0.8s"/>
+        </circle>
+        <circle cx="50" cy="0"  r="2.5" fill="#FEF08A">
+            <animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite" begin="1s"/>
         </circle>
     </svg>`;
 }
