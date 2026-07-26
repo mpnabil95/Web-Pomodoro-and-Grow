@@ -101,13 +101,13 @@ pomodoro-and-grow/
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/USERNAME/NAMA-REPOSITORY.git
+git clone  https://github.com/mpnabil95/Web-Pomodoro-and-Grow.git
 ```
 
 ### 2. Masuk ke Direktori Proyek
 
 ```bash
-cd NAMA-REPOSITORY
+cd Web-Pomodoro-and-Grow
 ```
 
 ### 3. Jalankan dengan Local Server
